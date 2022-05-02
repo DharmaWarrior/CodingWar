@@ -3,6 +3,7 @@ Starting of coding Journey
 #include <iostream>
 using namespace std;
 
+```
 class shop
 {
 
@@ -44,3 +45,4 @@ int main()
     dukaan.displayPrice();
     return 0;
 }
+```

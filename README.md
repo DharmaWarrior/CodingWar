@@ -1,50 +1,47 @@
 # CodingWar
 Starting of coding Journey
-```#include <iostream>
+```
+#include <iostream>
 using namespace std;
 
+class complex
+{
+    int a;
+    int b;
 
-class employee {
-    static int count ; // bydefault it starts with initial value of 0
-    int id;
-
-    public:
-
-    void setdata(void){
-        cout<<"Enter the id "<<endl;
-        cin>>id;
-        count ++;
+public:
+    void setdata(int v1, int v2)
+    {
+        a = v1;
+        b = v2;
     }
-    void getdata(void){
-        cout<<"the id of this employee is "<<id<<" and this is employee number "<<count<<endl;
-    }
-    static void getcount(void){
 
-        //  cout<<id;   cant be used it will show error because normal entities cant be used in static entities
-        cout<<"the value of count is "<<count<<endl;
+    void setdatabysum(complex o1, complex o2)
+    {
+        a = o1.a + o2.a;
+        b = o1.b + o2.b;
+    }
+
+    void print(void)
+    {
+        cout << "your complex number is" << a << "+" << b << "i" << endl;
     }
 };
 
+int main()
+{
 
-int employee :: count;    //using this as static variable and default value is 0
+    complex c1, c2, c3;
 
-int main(){
+    c1.setdata(1, 2);
+    c1.print();
 
+    c2.setdata(3, 4);
+    c2.print();
 
-    employee saar, rohan, raju;
-    
-    saar.setdata();
-    saar.getdata();
-    emloyee :: getcount();
+    c3.setdatabysum(c1, c2);
+    c3.print();
 
-    rohan.setdata();
-    rohan.getdata();
-    emloyee :: getcount();    
-    
-    raju.setdata();
-    raju.getdata();
-    emloyee :: getcount();
-    
     return 0;
 }
 ```

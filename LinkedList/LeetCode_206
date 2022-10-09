@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+//https://leetcode.com/problems/reverse-linked-list/
+//Concept => make point the curr pointer to prev node and move prev to curr and curr to curr->next
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* curr;
+        ListNode* prev;
+        ListNode* forwrd;
+        
+        curr=head;
+        prev=NULL;
+        forwrd=head;
+            
+        while(curr!=NULL){
+            forwrd = curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=forwrd;
+        }
+        head=prev;
+        
+        return head;
+    }
+};

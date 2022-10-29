@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+//Concept => first find the pivot index from where the array is changing then applying binary search according to the target value and its comparison. 
+
+class Solution {
+public:
+    int search(vector<int>& arr, int target) {
+        int pivot = findpivot(arr);
+        
+        if(pivot==-1){
+            return binarysearch(arr,0,arr.size()-1,target);
+        }
+        if(arr[pivot]==target){
+            return pivot;
+        }
+        
+        if(target>=arr[0]){
+            return binarysearch(arr,0,pivot-1,target);
+        }    
+        return binarysearch(arr,pivot+1,arr.size()-1,target);
+    }
+    int findpivot(vector<int>& arr){
+        int start=0;
+        int end = arr.size()-1;
+        
+        while(start<end){
+            int mid = start + (end-start)/2;
+            
+            if(mid<end && arr[mid]>arr[mid+1]){
+                return mid;
+            }
+            else if(mid>start && arr[mid]<arr[mid-1]){
+                return mid-1;
+            }
+            else if(arr[mid]<=arr[start]){
+                end=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return -1;
+    }
+    int binarysearch(vector<int>& arr,int s,int e,int target){
+        int start=s;
+        int end = e;
+        
+        while(start<=end){
+            int mid = start + (end-start)/2;
+            
+            if(arr[mid]==target){
+                return mid;
+            }
+            else if(arr[mid]<target){
+                start=mid+1;
+            }
+            else if(arr[mid]>target){
+                end=mid-1;
+            }
+        }
+        return -1;
+    }
+};
